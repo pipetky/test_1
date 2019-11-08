@@ -1,0 +1,15 @@
+---
+- name: copy python script
+  copy:
+    src: main.py
+    dest: /var/test/
+    owner: root
+    group: admin
+    mode: '0644'
+- name: Add script cronjob for files delete
+  cron:
+    name: cronjob
+    hour: '0'
+    weekday: 1-5
+    job: /usr/bin/python3 /var/test/main.py -a 9 -p test -s 2
+
